@@ -8,28 +8,28 @@ public class Main {
 
 
         do {
-            System.out.println("\n  :'.            .': ");
+            System.out.println("  :'.            .': ");
             System.out.println(" :   :..........:   :");
-            System.out.println("\n =    BIBLIOTECA    =");
-            System.out.println("\n  ..................");
-            System.out.println("\n1 - Cadastrar livro");
+            System.out.println(" =    BIBLIOTECA    =");
+            System.out.println("  ..................");
+            System.out.println("1 - Cadastrar livro");
             System.out.println("2 - Cadastrar usuario");
             System.out.println("3 - Emprestar livro");
             System.out.println("4 - Devolver livro");
             System.out.println("5 - Listar livros");
             System.out.println("6 - Listar emprestimos");
             System.out.println("0 - Sair");
-            System.out.print("Escolha uma opcao: ");
+            System.out.println("Escolha uma opcao: ");
             
             int opcao = sc.nextInt();
             sc.nextLine(); 
 
             switch (opcao) {
                 case 1:
-                    System.out.print("ID do Livro: ");
+                    System.out.println("ID do Livro: ");
                     int idLivro = sc.nextInt();
                     sc.nextLine();
-                    System.out.print("Título: ");
+                    System.out.println("Título: ");
                     String titulo = sc.nextLine();
                     
                 
@@ -38,7 +38,7 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("Qual tipo? (1 - Aluno | 2 - Professor): ");
+                    System.out.println("Qual tipo? (1 - Aluno | 2 - Professor): ");
                     int tipo = sc.nextInt();
                     sc.nextLine();
 
@@ -51,12 +51,12 @@ public class Main {
                     String email = sc.nextLine();
 
                     if (tipo == 1) {
-                        System.out.print("Matricula: ");
+                        System.out.println("Matricula: ");
                         String matricula = sc.nextLine();
                         biblioteca.adicionarUsuario(new Aluno(idUsuario, nome, email, matricula));
                         System.out.println("Aluno cadastrado!");
                     } else if (tipo == 2) {
-                        System.out.print("Disciplina: ");
+                        System.out.println("Disciplina: ");
                         String disciplina = sc.nextLine();
                         biblioteca.adicionarUsuario(new Professor(idUsuario, nome, email, disciplina));
                         System.out.println("Professor cadastrado!");
@@ -66,9 +66,9 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.print("Digite o ID do Livro: ");
+                    System.out.println("Digite o ID do Livro: ");
                     int idLivroAluguel = sc.nextInt();
-                    System.out.print("Digite o ID do Usuario: ");
+                    System.out.println("Digite o ID do Usuario: ");
                     int idUsuAluguel = sc.nextInt();
                     sc.nextLine();
 
@@ -76,7 +76,7 @@ public class Main {
                     Usuario usuarioAchado = biblioteca.buscarUsuario(idUsuAluguel);
                     
                     if (livroAchado != null && usuarioAchado != null) {
-                        System.out.print("Digite a data do emprestimo (dd/MM/yyyy): ");
+                        System.out.println("Digite a data do emprestimo (dd/MM/yyyy): ");
                         String dataEmprestimo = sc.nextLine();
                         System.out.println("Iniciando emprestimo para: " + usuarioAchado.getNome());
                         biblioteca.emprestarLivro(idLivroAluguel, idUsuAluguel, dataEmprestimo);
@@ -86,7 +86,7 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.print("ID do Livro que esta sendo devolvido: ");
+                    System.out.println("ID do Livro que esta sendo devolvido: ");
                     int idLivroDevolucao = sc.nextInt();
                     biblioteca.devolverLivro(idLivroDevolucao);
                     break;

@@ -69,7 +69,7 @@ public class Biblioteca {
     }
 
     public void listarLivros() {
-        System.out.println("\n  ============= Catálogo de Livros =============\n");
+        System.out.println("============= Catálogo de Livros =============");
 
         if (livros.isEmpty()) {
                 System.out.println("Nenhum livro cadastrado.");
@@ -83,7 +83,7 @@ public class Biblioteca {
     }
 
     public void listarEmprestimos() {
-        System.out.println("\n  ============== Emprestimos ==============\n");
+        System.out.println("============== Emprestimos ==============");
 
         if (emprestimos.isEmpty()) {
                 System.out.println("Nenhum emprestimo registrado.");
