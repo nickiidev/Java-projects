@@ -78,7 +78,6 @@ public class Biblioteca {
 
         for (Livro l : livros) {
             System.out.println(l);
-            
         }
     }
 
