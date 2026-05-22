@@ -40,7 +40,7 @@ public class Emprestimo {
     }
 
     public String toString() {
-        return "\nID do Emprestimo: " + id + "\nData Emprestimo: " + dataEmprestimo + "\nData Devolucao: " + dataDevolucao;
+        return "ID do Emprestimo: " + id + " | Data Emprestimo: " + dataEmprestimo + " | Data Devolucao: " + dataDevolucao;
     }
     
 }

@@ -19,26 +19,26 @@ public class Main {
             System.out.println("5 - Listar livros");
             System.out.println("6 - Listar emprestimos");
             System.out.println("0 - Sair");
-            System.out.println("Escolha uma opcao: ");
+            System.out.print("Escolha uma opcao: ");
             
             int opcao = sc.nextInt();
             sc.nextLine(); 
 
             switch (opcao) {
                 case 1:
-                    System.out.println("ID do Livro: ");
+                    System.out.print("ID do Livro: ");
                     int idLivro = sc.nextInt();
                     sc.nextLine();
-                    System.out.println("Título: ");
+                    System.out.print("Título: ");
                     String titulo = sc.nextLine();
                     
                 
                     biblioteca.adicionarLivro(new Livro(idLivro, titulo));
-                    System.out.println("Livro cadastrado com sucesso!");
+                    System.out.print("Livro cadastrado com sucesso!");
                     break;
 
                 case 2:
-                    System.out.println("Qual tipo? (1 - Aluno | 2 - Professor): ");
+                    System.out.print("Qual tipo? (1 - Aluno | 2 - Professor): ");
                     int tipo = sc.nextInt();
                     sc.nextLine();
 
@@ -51,12 +51,12 @@ public class Main {
                     String email = sc.nextLine();
 
                     if (tipo == 1) {
-                        System.out.println("Matricula: ");
+                        System.out.print("Matricula: ");
                         String matricula = sc.nextLine();
                         biblioteca.adicionarUsuario(new Aluno(idUsuario, nome, email, matricula));
                         System.out.println("Aluno cadastrado!");
                     } else if (tipo == 2) {
-                        System.out.println("Disciplina: ");
+                        System.out.print("Disciplina: ");
                         String disciplina = sc.nextLine();
                         biblioteca.adicionarUsuario(new Professor(idUsuario, nome, email, disciplina));
                         System.out.println("Professor cadastrado!");
@@ -66,9 +66,9 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Digite o ID do Livro: ");
+                    System.out.print("Digite o ID do Livro: ");
                     int idLivroAluguel = sc.nextInt();
-                    System.out.println("Digite o ID do Usuario: ");
+                    System.out.print("Digite o ID do Usuario: ");
                     int idUsuAluguel = sc.nextInt();
                     sc.nextLine();
 
@@ -76,9 +76,9 @@ public class Main {
                     Usuario usuarioAchado = biblioteca.buscarUsuario(idUsuAluguel);
                     
                     if (livroAchado != null && usuarioAchado != null) {
-                        System.out.println("Digite a data do emprestimo (dd/MM/yyyy): ");
+                        System.out.print("Digite a data do emprestimo (dd/MM/yyyy): ");
                         String dataEmprestimo = sc.nextLine();
-                        System.out.println("Iniciando emprestimo para: " + usuarioAchado.getNome());
+                        System.out.print("Iniciando emprestimo para: " + usuarioAchado.getNome());
                         biblioteca.emprestarLivro(idLivroAluguel, idUsuAluguel, dataEmprestimo);
                     } else {
                         System.out.println("Erro: O ID do Livro ou do Usuario não existe no sistema.");
@@ -86,7 +86,7 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("ID do Livro que esta sendo devolvido: ");
+                    System.out.print("ID do Livro que esta sendo devolvido: ");
                     int idLivroDevolucao = sc.nextInt();
                     biblioteca.devolverLivro(idLivroDevolucao);
                     break;
