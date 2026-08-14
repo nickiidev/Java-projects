@@ -6,9 +6,9 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca();
         boolean rodando = true;
 
-
+       
         do {
-            System.out.println("  :'.            .': ");
+            System.out.println(" :'.              .': ");
             System.out.println(" :   :..........:   :");
             System.out.println(" =    BIBLIOTECA    =");
             System.out.println("  ..................");
@@ -18,11 +18,12 @@ public class Main {
             System.out.println("4 - Devolver livro");
             System.out.println("5 - Listar livros");
             System.out.println("6 - Listar emprestimos");
+            System.out.println("7 - Listar Usuarios");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opcao: ");
             
             int opcao = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
 
             switch (opcao) {
                 case 1:
@@ -32,9 +33,9 @@ public class Main {
                     System.out.print("Título: ");
                     String titulo = sc.nextLine();
                     
-                
-                    biblioteca.adicionarLivro(new Livro(idLivro, titulo));
-                    System.out.print("Livro cadastrado com sucesso!");
+                    // Adiciona o livro passando direto pra biblioteca
+                    biblioteca.adicionarLivro(new Livro(idLivro, titulo, true));
+                    System.out.println("Livro cadastrado com sucesso!");
                     break;
 
                 case 2:
@@ -51,15 +52,20 @@ public class Main {
                     String email = sc.nextLine();
 
                     if (tipo == 1) {
-                        System.out.print("Matricula: ");
-                        String matricula = sc.nextLine();
-                        biblioteca.adicionarUsuario(new Aluno(idUsuario, nome, email, matricula));
-                        System.out.println("Aluno cadastrado!");
+                        System.out.print("Digite a Matricula: ");
+
                     } else if (tipo == 2) {
-                        System.out.print("Disciplina: ");
-                        String disciplina = sc.nextLine();
-                        biblioteca.adicionarUsuario(new Professor(idUsuario, nome, email, disciplina));
-                        System.out.println("Professor cadastrado!");
+                        System.out.print("Digite a Disciplina: ");
+                    }
+                    String dadoEspecifico = sc.nextLine();
+            
+
+                    // Usa o Factory para criar o tipo certo sem entulhar o Main de ifs
+                    Usuario novoUsuario = UsuarioFactory.criarUsuario(tipo, idUsuario, nome, email, dadoEspecifico);
+                    
+                    if (novoUsuario != null) {
+                        biblioteca.adicionarUsuario(novoUsuario);
+                        System.out.println("Usuario cadastrado com sucesso!");
                     } else {
                         System.out.println("Tipo invalido.");
                     }
@@ -71,18 +77,10 @@ public class Main {
                     System.out.print("Digite o ID do Usuario: ");
                     int idUsuAluguel = sc.nextInt();
                     sc.nextLine();
-
-                    Livro livroAchado = biblioteca.buscarLivro(idLivroAluguel);
-                    Usuario usuarioAchado = biblioteca.buscarUsuario(idUsuAluguel);
+                    System.out.print("Digite a data do emprestimo (dd/MM/yyyy): ");
+                    String dataEmprestimo = sc.nextLine();
                     
-                    if (livroAchado != null && usuarioAchado != null) {
-                        System.out.print("Digite a data do emprestimo (dd/MM/yyyy): ");
-                        String dataEmprestimo = sc.nextLine();
-                        System.out.print("Iniciando emprestimo para: " + usuarioAchado.getNome());
-                        biblioteca.emprestarLivro(idLivroAluguel, idUsuAluguel, dataEmprestimo);
-                    } else {
-                        System.out.println("Erro: O ID do Livro ou do Usuario não existe no sistema.");
-                    }
+                    biblioteca.emprestarLivro(idLivroAluguel, idUsuAluguel, dataEmprestimo);
                     break;
 
                 case 4:
@@ -99,13 +97,19 @@ public class Main {
                     biblioteca.listarEmprestimos();
                     break;
 
+                case 7:
+                    biblioteca.listarUsuarios();
+                    break;
+
                 case 0:
                     System.out.println("Saindo do sistema...");
+                    rodando = false;
                     break;
 
                 default:
                     System.out.println("Opcao invalida!");
             }
+            
         } while (rodando);
         
         sc.close();
